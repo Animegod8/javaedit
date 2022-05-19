@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 class program{
@@ -57,14 +58,19 @@ class fileHandling extends program{
     
       }
      public static void writeFile(){
-        System.out.println("Type text to write");
+        System.out.println("Type text to write(/e to exit)");
          Scanner myText = new Scanner(System.in);
          texttowrite = myText.nextLine();
-         try{
-           File myObj =  new File(fileWrite);
+         if(texttowrite != "/e"){
+           try{
+             FileWriter myObj =  new FileWriter(fileWrite);
+             myObj.write(texttowrite);
+             myObj.close();
            
-         }
+           }  catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+           }
       }
     }
-  
- 
+}
